@@ -59,10 +59,19 @@ namespace TaskManagerDMD.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public void SelectNode(string id)
-        {            
-            ViewBag.ParentId=id;
+        
+        [HttpPost]
+        public JsonResult SubtasksPartialView(string id)
+        {
+            List<TmTask> tasks = new List<TmTask>();
+            foreach (TmTask task in db.Tasks)
+            {
+                if (task.ParentId.ToString() == id)
+                {
+                    tasks.Add(task);
+                }
+            }
+            return Json(tasks);
         }
 
 

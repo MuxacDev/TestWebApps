@@ -10,7 +10,7 @@
         </tr>
         @foreach (var task in Model)
         {
-            @if (task.ParentId == ViewBag.ParentId)
+            @if (task.ParentId.ToString() == ViewBag.ParentId)
             {
                 <tr>
                     <td>@task.Task_Name</td>
