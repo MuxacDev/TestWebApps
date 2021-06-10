@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TaskManagerDMD.Models.TmTask>
+<div class="col-sm-8">
+    <!--bootstrap таблица-->
+    <table class="table-condensed">
+        <tr>
+            <td>Модель</td>
+            <td>Производитель</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        @foreach (var task in Model)
+        {
+            @if (task.ParentId == ViewBag.ParentId)
+            {
+                <tr>
+                    <td>@task.Task_Name</td>
+                    <td>@task.Task_Description</td>
+                    <td>@task.Executive_List</td>
+                    <td>@task.Registration_Date</td>
+                    <td>@task.Task_Status</td>
+                    <td>@task.Planned_Duration</td>
+                    <td>@task.Actual_Duration</td>
+                    <td>@task.Completion_Date</td>
+                    <td><a href="~/Home/Buy/@task.Id">Купить</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

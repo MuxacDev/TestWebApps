@@ -1,0 +1,76 @@
+﻿@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Task Mamager";
+}
+
+<h3>Задачи</h3>
+<div class="container-fluid">    
+    <div class="row">
+        <div class="col-sm-4">
+            <div id="jstree">
+            </div>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+            <script type="text/javascript">
+                var selectedId = 0;
+        $(function () {
+            $('#jstree').on('changed.jstree', function (e, data) {
+                /*var i;
+                var selectedItems = [];
+                for (i = 0; i < data.selected.length; i++) {
+
+                    //Fetch the Id.
+                    //var id = data.selected[i];
+
+                    //Remove the ParentId.
+                    //if (id.indexOf('-') != -1){
+                    //    id = id.split("-")[0];
+                    //}
+
+                    //Add the Node to the JSON Array.
+                    selectedItems.push({
+                        text: data.instance.get_node(data.selected[i]).text,
+                        id: data.instance.get_node(data.selected[i]).id, //id,
+                        parent: data.instance.get_node(data.selected[i]).parent
+                        //parent: data.node.parents[i]
+                    });
+                }*/
+
+                //Serialize the JSON Array and save in HiddenField.
+                //$('#selectedItems').val(JSON.stringify(selectedItems));
+
+                //selectedId = data.selected[0];
+                //var xhr = new XMLHttpRequest();
+                //xhr.open("GET", "Home/Index/" + selectedId)
+                $.get("/Home/SelectNode", { id: data.selected[0] }, function(data) { });
+
+
+
+
+
+                console.log("/Home/SelectNode/" + data.selected[0]);
+            })
+
+                .jstree({
+                "core": {
+                    "themes": {
+                        "variant": "large"
+                    },
+                    "data": @Html.Raw(ViewBag.Json)
+                    },
+
+            });
+
+
+
+
+        });
+
+            </script>
+        </div>
+        <partial name="_SubtasksListPartial.cshtml" />        
+    </div>
+</div>
+
+
