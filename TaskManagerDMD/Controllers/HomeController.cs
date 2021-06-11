@@ -24,12 +24,13 @@ namespace TaskManagerDMD.Controllers
             //return View(db.Tasks.ToList());
 
             List<TreeViewNode> nodes = new List<TreeViewNode>();
+            nodes.Add(new TreeViewNode { id = "0", parent = "#", text = "Все задачи" });
 
-            
 
             //Loop and add the Child Nodes.
             foreach (TmTask task in db.Tasks)
             {
+
                 if (task.ParentId == 0)
                 {
                     //nodes.Add(new TreeViewNode { id = "#-" + task.Id.ToString(), parent = "#", text = task.Task_Name });
@@ -39,9 +40,7 @@ namespace TaskManagerDMD.Controllers
                 {
                     //nodes.Add(new TreeViewNode { id = task.ParentId.ToString()+"-" + task.Id.ToString(), parent = task.ParentId.ToString(), text = task.Task_Name });
                     nodes.Add(new TreeViewNode { id = task.Id.ToString(), parent = task.ParentId.ToString(), text = task.Task_Name });
-                }
-
-                
+                }               
 
             }
 
@@ -58,22 +57,8 @@ namespace TaskManagerDMD.Controllers
             List<TreeViewNode> items = JsonConvert.DeserializeObject<List<TreeViewNode>>(selectedItems);
             return RedirectToAction("Index");
         }
-
-
-        /*[HttpPost]
-        public JsonResult SubtasksPartialView(string id)
-        {
-            List<TmTask> tasks = new List<TmTask>();
-            foreach (TmTask task in db.Tasks)
-            {
-                if (task.ParentId.ToString() == id)
-                {
-                    tasks.Add(task);
-                }
-            }
-            return Json(tasks);
-        }*/
-        [HttpGet]
+        
+        [HttpPost]
         public ActionResult GetSubtasks(string id)
         {
             List<TmTask> tasks = new List<TmTask>();
@@ -84,7 +69,7 @@ namespace TaskManagerDMD.Controllers
                     tasks.Add(task);
                 }
             }             
-            return PartialView("_SubtasksPartialView",tasks);
+            return PartialView("SubtasksPartialView",tasks);
         }
 
 

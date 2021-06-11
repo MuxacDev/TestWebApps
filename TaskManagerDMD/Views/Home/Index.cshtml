@@ -1,7 +1,7 @@
 ﻿
 @addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Task Mamager";
+    ViewData["Title"] = "Task Manager";
 }
 
 <h3>Задачи</h3>
@@ -16,62 +16,20 @@
             <script type="text/javascript">
                 var selectedId = 0;
         $(function () {
-            $('#jstree').on('changed.jstree', function (e, data) {
-                /*var i;
-                var selectedItems = [];
-                for (i = 0; i < data.selected.length; i++) {
+            $('#jstree').on('changed.jstree', function (e, data) {                
 
-                    //Fetch the Id.
-                    //var id = data.selected[i];
-
-                    //Remove the ParentId.
-                    //if (id.indexOf('-') != -1){
-                    //    id = id.split("-")[0];
-                    //}
-
-                    //Add the Node to the JSON Array.
-                    selectedItems.push({
-                        text: data.instance.get_node(data.selected[i]).text,
-                        id: data.instance.get_node(data.selected[i]).id, //id,
-                        parent: data.instance.get_node(data.selected[i]).parent
-                        //parent: data.node.parents[i]
-                    });
-                }*/
-
-                //Serialize the JSON Array and save in HiddenField.
-                //$('#selectedItems').val(JSON.stringify(selectedItems));
-
-                //selectedId = data.selected[0];
-                //var xhr = new XMLHttpRequest();
-                //xhr.open("GET", "Home/Index/" + selectedId)
-                $.get("/Home/GetSubtasks1", { id: data.selected[0] }, 
-                    alert("Hello: "));
-
-                /*$.ajax({
-                    type: "POST",
-                    url: "/Home/GetSubtasks",
-                    data: '{ id: '+data.selected[0]+' }',
-                    contentType: "application/text; charset=utf-8",
-                    dataType: "text",
-                    success: function (response) {
-                        alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });*/
-
-
-
-
-
-                //$('#getSubtasks').load('/_SubtasksPartialView.cshtml');
-
-
-                console.log("/Home/SelectNode/" + data.selected[0]);
+                $.ajax({
+                    url: '@Url.Action("GetSubtasks", "Home")',//controller name and action
+                    type: 'POST',
+                    data: { id: data.selected[0] } //id
+                    })
+                    .success(function (result) {
+                        $('#subtasksList').html(result); //write returned partial view to empty div
+                    })
+                    .error(function (xhr, status) {
+                        alert(status);
+                    })
+                
             })
 
                 .jstree({
@@ -91,7 +49,10 @@
 
             </script>
         </div>
-        @await  Html.PartialAsync("_SubtasksPartialView")
+        
+        <div class="col-sm-8" id="subtasksList">
+
+        </div>
     </div>
 </div>
 
