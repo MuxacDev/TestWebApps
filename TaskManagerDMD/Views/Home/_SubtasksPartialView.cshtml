@@ -9,21 +9,18 @@
             <td></td>
         </tr>
         @foreach (var task in Model)
-        {
-            @if (task.ParentId.ToString() == ViewBag.ParentId)
-            {
-                <tr>
-                    <td>@task.Task_Name</td>
-                    <td>@task.Task_Description</td>
-                    <td>@task.Executive_List</td>
-                    <td>@task.Registration_Date</td>
-                    <td>@task.Task_Status</td>
-                    <td>@task.Planned_Duration</td>
-                    <td>@task.Actual_Duration</td>
-                    <td>@task.Completion_Date</td>
-                    <td><a href="~/Home/Buy/@task.Id">Купить</a></td>
-                </tr>
-            }
+        {            
+		    <tr>
+                <td>@task.Task_Name</td>
+                <td>@task.Task_Description</td>
+                <td>@task.Executive_List</td>
+                <td>@task.Registration_Date</td>
+                <td>@task.Task_Status</td>
+                <td>@task.Planned_Duration</td>
+                <td>@task.Actual_Duration</td>
+                <td>@task.Completion_Date</td>
+                <td><a href="~/Home/Buy/@task.Id">Купить</a></td>
+            </tr> 	        
         }
     </table>
 </div>

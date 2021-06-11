@@ -1,4 +1,5 @@
-﻿@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Task Mamager";
 }
@@ -43,10 +44,31 @@
                 //selectedId = data.selected[0];
                 //var xhr = new XMLHttpRequest();
                 //xhr.open("GET", "Home/Index/" + selectedId)
-                $.get("/Home/SubtasksPartialView", { id: data.selected[0] });
+                $.get("/Home/GetSubtasks1", { id: data.selected[0] }, 
+                    alert("Hello: "));
+
+                /*$.ajax({
+                    type: "POST",
+                    url: "/Home/GetSubtasks",
+                    data: '{ id: '+data.selected[0]+' }',
+                    contentType: "application/text; charset=utf-8",
+                    dataType: "text",
+                    success: function (response) {
+                        alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });*/
 
 
-                //$('#subtasksPartialView').load('/_SubtasksPartialView.cshtml');
+
+
+
+                //$('#getSubtasks').load('/_SubtasksPartialView.cshtml');
 
 
                 console.log("/Home/SelectNode/" + data.selected[0]);
@@ -69,7 +91,7 @@
 
             </script>
         </div>
-        <partial name="_SubtasksPartialView.cshtml" />
+        @await  Html.PartialAsync("_SubtasksPartialView")
     </div>
 </div>
 

@@ -59,8 +59,8 @@ namespace TaskManagerDMD.Controllers
             return RedirectToAction("Index");
         }
 
-        
-        [HttpPost]
+
+        /*[HttpPost]
         public JsonResult SubtasksPartialView(string id)
         {
             List<TmTask> tasks = new List<TmTask>();
@@ -72,6 +72,19 @@ namespace TaskManagerDMD.Controllers
                 }
             }
             return Json(tasks);
+        }*/
+        [HttpGet]
+        public ActionResult GetSubtasks(string id)
+        {
+            List<TmTask> tasks = new List<TmTask>();
+            foreach (TmTask task in db.Tasks)
+            {
+                if (task.ParentId.ToString() == id)
+                {
+                    tasks.Add(task);
+                }
+            }             
+            return PartialView("_SubtasksPartialView",tasks);
         }
 
 
