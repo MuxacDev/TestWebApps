@@ -1,0 +1,50 @@
+﻿@model TaskManagerDMD.Models.TmTask
+@if (Model != null && Model.Id != 0)
+{
+    <h3>@ViewData["TaskName"]: @Model.TaskName</h3>
+    <h4>
+        @Html.ActionLink(ViewData["EditTask_Index"].ToString(), "Edit", new { selectedId = Model.Id }, null)
+        @if (!ViewBag.Children)
+        {
+            @Html.ActionLink(" | "+ViewData["DeleteTask_Index"].ToString(), "Delete", new { selectedId = Model.Id }, null)
+        }        
+    </h4>
+    <ul class="list-group">
+        <li class="list-group-item">@ViewData["TaskDescription"]: @Model.TaskDescription</li>
+        <li class="list-group-item">@ViewData["ExecutiveList"]: @Model.ExecutiveList</li>
+        <li class="list-group-item">@ViewData["RegistrationDate"]: @Model.RegistrationDate.ToString(@"dd\.MM\.yyyy\ HH\:mm")</li>
+        <li class="list-group-item">@ViewData["PlannedCompletionDate"]: @Model.PlannedCompletionDate.ToString(@"dd\.MM\.yyyy\ HH\:mm")</li>
+
+        @if (Model.PlannedDurationSubtasks == 0)
+        {
+        <li class="list-group-item">@ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(Model.PlannedDuration).TotalHours) ч</li>
+        }
+        else
+        {
+        <li class="list-group-item">
+            @ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(Model.PlannedDurationSum).TotalHours) ч =
+            @Math.Round(TimeSpan.FromTicks(Model.PlannedDuration).TotalHours) ч +
+            @Math.Round(TimeSpan.FromTicks(Model.PlannedDurationSubtasks).TotalHours) ч (подзадачи)
+        </li>
+        }
+        <li class="list-group-item">@ViewData["TaskStatus"]: @Model.TaskStatus</li>
+        @if (@Model.TaskStatus == "Завершена")
+        {
+        <li class="list-group-item">@ViewData["CompletionDate"]: @Model.CompletionDate</li>
+        }
+        @if (Model.ActualDurationSubtasks == 0)
+        {
+        <li class="list-group-item">@ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(Model.ActualDuration).TotalHours) ч</li>
+        }
+        else
+        {
+        <li class="list-group-item">
+            @ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(Model.ActualDurationSum).TotalHours) ч =
+            @Math.Round(TimeSpan.FromTicks(Model.ActualDuration).TotalHours) ч +
+            @Math.Round(TimeSpan.FromTicks(Model.ActualDurationSubtasks).TotalHours) ч (подзадачи)
+        </li>
+        }
+    </ul>
+}
+
+

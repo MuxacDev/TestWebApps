@@ -2,20 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace TaskManagerDMD.Models
 {
     public class TmTask
     {
+        [Key]
         public Int32 Id { get; set; }
         public Int32 ParentId { get; set; }
-        public String Task_Name { get; set; }
-        public String Task_Description { get; set; }
-        public String Executive_List { get; set; }
-        public DateTime Registration_Date { get; set; }
-        public String Task_Status { get; set; }
-        public Int64 Planned_Duration { get; set; }
-        public Int64 Actual_Duration { get; set; }
-        public DateTime Completion_Date { get; set; }
+        public String TaskName { get; set; }
+        public String TaskDescription { get; set; }
+        public String ExecutiveList { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public String TaskStatus { get; set; }
+        //[NotMapped]
+        public Int64 PlannedDuration { get; set; }
+        //[NotMapped]
+        public Int64 ActualDuration { get; set; }
+        public Int64 PlannedDurationSubtasks { get; set; }
+        public Int64 ActualDurationSubtasks { get; set; }
+        public Int64 PlannedDurationSum { get; set; }
+        public Int64 ActualDurationSum { get; set; }
+        public DateTime PlannedCompletionDate { get; set; }
+        public DateTime CompletionDate { get; set; }
+        public string ChildrenIds { get; set; }
     }
 }

@@ -1,57 +1,86 @@
 ﻿
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    ViewData["Title"] = "Task Manager";
-}
 
-<h3>Задачи</h3>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-4">
-            <div id="jstree">
-            </div>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-            <script type="text/javascript">
-                var selectedId = 0;
-        $(function () {
-            $('#jstree').on('changed.jstree', function (e, data) {                
 
-                $.ajax({
-                    url: '@Url.Action("GetSubtasks", "Home")',//controller name and action
-                    type: 'POST',
-                    data: { id: data.selected[0] } //id
-                    })
-                    .success(function (result) {
-                        $('#subtasksList').html(result); //write returned partial view to empty div
-                    })
-                    .error(function (xhr, status) {
-                        alert(status);
-                    })
-                
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<script type="text/javascript">
+    function showSubtasks(selectedId) {
+        $.ajax({
+            url: '@Url.Action("GetSubtasks", "Home")',//controller name and action
+            type: 'POST',
+            data: { id: selectedId } //id
             })
+            .success(function (result) {
+                $('#subtasksList').html(result); //write returned partial view to empty div
+            })
+            
+    }
+    function showTaskDetails(selectedId) {
+        $.ajax({
+            url: '@Url.Action("GetTaskDetails", "Home")',//controller name and action
+            type: 'POST',
+            data: { id: selectedId } //id
+            })
+            .success(function (result) {                                
+                $('#taskDetails').html(result); //write returned partial view to empty div                                
+            })
+            
+    }
+    function showTaskCreationLink(selectedId) {
+        $.ajax({
+            url: '@Url.Action("GetTaskCreationLink", "Home")',//controller name and action
+            type: 'POST',
+            data: { id: selectedId } //id
+            })
+            .success(function (result) {                                
+                $('#taskCreationLink').html(result); //write returned partial view to empty div
+            })            
+    }
+</script>
 
-                .jstree({
-                "core": {
-                    "themes": {
-                        "variant": "large"
-                    },
-                    "data": @Html.Raw(ViewBag.Json)
-                    },
-
-            });
 
 
+<div class="container">
+    <div class="row">
+        <div class="col col-md-4">
+            <h3>@ViewData["Header_Index"]</h3>
+            <div id="taskCreationLink">
+                <script type="text/javascript">
+                    showTaskCreationLink("0")
+                </script>
+            </div>
+            <div id="jstree">
 
+                <script type="text/javascript">
 
-        });
-
-            </script>
+                $(function () {
+                    $('#jstree').on('changed.jstree', function (e, data) {
+                        showSubtasks(data.selected[0]);
+                        showTaskDetails(data.selected[0]);
+                        showTaskCreationLink(data.selected[0]);
+                    }).jstree({
+                        "core": {
+                            "themes": {
+                                "variant": "large"
+                            },
+                            "data": @Html.Raw(ViewBag.Json)}
+                    });
+                });
+                </script>
+            </div>
         </div>
-        
-        <div class="col-sm-8" id="subtasksList">
 
+        
+        <div class="col col-md-8">            
+            <div id="taskDetails">
+            </div>
+            <h3>@ViewData["Subtasks_Index"]</h3>
+            <div id="subtasksList">
+                <script type="text/javascript">
+                showSubtasks("0")
+                </script>
+            </div>
         </div>
     </div>
 </div>

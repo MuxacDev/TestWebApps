@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TaskManagerDMD.Models;   // пространство имен моделей
 using Microsoft.EntityFrameworkCore; // пространство имен EntityFramework
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace TaskManagerDMD
 {
@@ -28,19 +30,9 @@ namespace TaskManagerDMD
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<TaskContext>(options => options.UseSqlServer(connection));
-
-
-            /*services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });*/
-
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            //services.AddTransient<TaskService>();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,10 +48,24 @@ namespace TaskManagerDMD
                 app.UseHsts();
             }
 
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en"),
+                new CultureInfo("ru"),
+                new CultureInfo("de")
+            };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("ru"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-
+            app.UseCookiePolicy();            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
