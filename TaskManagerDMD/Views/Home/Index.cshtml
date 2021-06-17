@@ -1,13 +1,10 @@
-﻿
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script type="text/javascript">
     function showSubtasks(selectedId) {
         $.ajax({
-            url: '@Url.Action("GetSubtasks", "Home")',//controller name and action
+            url: '@Url.Action("GetSubtasks", "Home",new {culture=ViewData["CultureUrlParam"].ToString() },null)',//controller name and action
             type: 'POST',
             data: { id: selectedId } //id
             })
@@ -18,7 +15,7 @@
     }
     function showTaskDetails(selectedId) {
         $.ajax({
-            url: '@Url.Action("GetTaskDetails", "Home")',//controller name and action
+            url: '@Url.Action("GetTaskDetails", "Home", new { culture = ViewData["CultureUrlParam"].ToString() }, null)',//controller name and action
             type: 'POST',
             data: { id: selectedId } //id
             })
@@ -29,7 +26,7 @@
     }
     function showTaskCreationLink(selectedId) {
         $.ajax({
-            url: '@Url.Action("GetTaskCreationLink", "Home")',//controller name and action
+            url: '@Url.Action("GetTaskCreationLink", "Home", new { culture = ViewData["CultureUrlParam"].ToString() }, null)',//controller name and action
             type: 'POST',
             data: { id: selectedId } //id
             })
@@ -39,12 +36,10 @@
     }
 </script>
 
-
-
-<div class="container">
-    <div class="row">
-        <div class="col col-md-4">
-            <h3>@ViewData["Header_Index"]</h3>
+<div class="container-fluid">
+    <div class="row">        
+        <div class="col-md-5">
+            <h2>@ViewData["Header_Index"]</h2>
             <div id="taskCreationLink">
                 <script type="text/javascript">
                     showTaskCreationLink("0")
@@ -72,10 +67,10 @@
         </div>
 
         
-        <div class="col col-md-8">            
+        <div class="col-md-7">            
             <div id="taskDetails">
             </div>
-            <h3>@ViewData["Subtasks_Index"]</h3>
+            <h2>@ViewData["Subtasks_Index"]</h2>
             <div id="subtasksList">
                 <script type="text/javascript">
                 showSubtasks("0")

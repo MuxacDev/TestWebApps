@@ -10,28 +10,28 @@
 
                 @if (task.PlannedDurationSubtasks == 0)
                 {
-                    <h5>@ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(task.PlannedDuration).TotalHours) ч</h5>
+                <h5>@ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(task.PlannedDuration).TotalDays) @ViewData["Days"]</h5>
                 }
                 else
                 {
                     <h5>
-                        @ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(task.PlannedDurationSum).TotalHours) ч =
-                        @Math.Round(TimeSpan.FromTicks(task.PlannedDuration).TotalHours) ч +
-                        @Math.Round(TimeSpan.FromTicks(task.PlannedDurationSubtasks).TotalHours) ч (подзадачи)
+                        @ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(task.PlannedDurationSum).TotalDays) @ViewData["Days"] =
+                        @Math.Round(TimeSpan.FromTicks(task.PlannedDuration).TotalDays) @ViewData["Days"] +
+                        @Math.Round(TimeSpan.FromTicks(task.PlannedDurationSubtasks).TotalDays) @ViewData["Days_Subtasks"]
                     </h5>
                 }
 
 
                 @if (task.ActualDurationSubtasks == 0)
                 {
-                    <h5>@ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(task.ActualDuration).TotalHours) ч</h5>
+                    <h5>@ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(task.ActualDuration).TotalDays) @ViewData["Days"]</h5>
                 }
                 else
                 {
                     <h5>
-                        @ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(task.ActualDurationSum).TotalHours) ч =
-                        @Math.Round(TimeSpan.FromTicks(task.ActualDuration).TotalHours) ч +
-                        @Math.Round(TimeSpan.FromTicks(task.ActualDurationSubtasks).TotalHours) ч (подзадачи)
+                        @ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(task.ActualDurationSum).TotalDays) @ViewData["Days"] =
+                        @Math.Round(TimeSpan.FromTicks(task.ActualDuration).TotalDays) @ViewData["Days"] +
+                        @Math.Round(TimeSpan.FromTicks(task.ActualDurationSubtasks).TotalDays) @ViewData["Days_Subtasks"]
                     </h5>
                 }
                 
@@ -44,6 +44,6 @@
 }
 else
 {    
-    <p>Нет подзадач</p>
+    <p>@ViewData["NoSubtasks_Index"]</p>
 }
 

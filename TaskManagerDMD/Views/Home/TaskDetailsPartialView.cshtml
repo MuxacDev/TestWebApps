@@ -1,14 +1,14 @@
 ﻿@model TaskManagerDMD.Models.TmTask
 @if (Model != null && Model.Id != 0)
 {
-    <h3>@ViewData["TaskName"]: @Model.TaskName</h3>
-    <h4>
+    <h2>@ViewData["TaskName"]: @Model.TaskName</h2>
+    <h3>
         @Html.ActionLink(ViewData["EditTask_Index"].ToString(), "Edit", new { selectedId = Model.Id }, null)
         @if (!ViewBag.Children)
         {
             @Html.ActionLink(" | "+ViewData["DeleteTask_Index"].ToString(), "Delete", new { selectedId = Model.Id }, null)
         }        
-    </h4>
+    </h3>
     <ul class="list-group">
         <li class="list-group-item">@ViewData["TaskDescription"]: @Model.TaskDescription</li>
         <li class="list-group-item">@ViewData["ExecutiveList"]: @Model.ExecutiveList</li>
@@ -17,14 +17,14 @@
 
         @if (Model.PlannedDurationSubtasks == 0)
         {
-        <li class="list-group-item">@ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(Model.PlannedDuration).TotalHours) ч</li>
+        <li class="list-group-item">@ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(Model.PlannedDuration).TotalDays) @ViewData["Days"]</li>
         }
         else
         {
         <li class="list-group-item">
-            @ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(Model.PlannedDurationSum).TotalHours) ч =
-            @Math.Round(TimeSpan.FromTicks(Model.PlannedDuration).TotalHours) ч +
-            @Math.Round(TimeSpan.FromTicks(Model.PlannedDurationSubtasks).TotalHours) ч (подзадачи)
+            @ViewData["PlannedDuration"]: @Math.Round(TimeSpan.FromTicks(Model.PlannedDurationSum).TotalDays) @ViewData["Days"] =
+            @Math.Round(TimeSpan.FromTicks(Model.PlannedDuration).TotalDays) @ViewData["Days"] +
+            @Math.Round(TimeSpan.FromTicks(Model.PlannedDurationSubtasks).TotalDays) @ViewData["Days_Subtasks"]
         </li>
         }
         <li class="list-group-item">@ViewData["TaskStatus"]: @Model.TaskStatus</li>
@@ -34,14 +34,14 @@
         }
         @if (Model.ActualDurationSubtasks == 0)
         {
-        <li class="list-group-item">@ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(Model.ActualDuration).TotalHours) ч</li>
+        <li class="list-group-item">@ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(Model.ActualDuration).TotalDays) @ViewData["Days"]</li>
         }
         else
         {
         <li class="list-group-item">
-            @ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(Model.ActualDurationSum).TotalHours) ч =
-            @Math.Round(TimeSpan.FromTicks(Model.ActualDuration).TotalHours) ч +
-            @Math.Round(TimeSpan.FromTicks(Model.ActualDurationSubtasks).TotalHours) ч (подзадачи)
+            @ViewData["ActualDuration"]: @Math.Round(TimeSpan.FromTicks(Model.ActualDurationSum).TotalDays) @ViewData["Days"] =
+            @Math.Round(TimeSpan.FromTicks(Model.ActualDuration).TotalDays) @ViewData["Days"] +
+            @Math.Round(TimeSpan.FromTicks(Model.ActualDurationSubtasks).TotalDays) @ViewData["Days_Subtasks"]
         </li>
         }
     </ul>

@@ -17,7 +17,13 @@
             @ViewData["ExecutiveList"]
             </label>
         <input value="@ViewBag.TaskToEdit.ExecutiveList" type="text" asp-for="ExecutiveList" class="form-control" />
-    </div>   
+    </div> 
+    <div class="form-group">
+        <label asp-for="RegistrationDate" class="control-label">
+            @ViewData["RegistrationDate"]: @ViewBag.TaskToEdit.RegistrationDate
+        </label>
+        <input type="datetime-local" asp-for="RegistrationDate" class="form-control" />
+    </div>
     <div class="form-group">
         <label asp-for="TaskStatus" class="control-label">
             @ViewData["TaskStatus"]
@@ -31,8 +37,7 @@
     </div>
     <div class="form-group">
         <label asp-for="PlannedCompletionDate" class="control-label">
-            @ViewData["PlannedCompletionDate"]
-                : @ViewBag.TaskToEdit.PlannedCompletionDate
+            @ViewData["PlannedCompletionDate"]: @ViewBag.TaskToEdit.PlannedCompletionDate
             </label>
         <input type="datetime-local" asp-for="PlannedCompletionDate" class="form-control" />
     </div>

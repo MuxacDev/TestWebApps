@@ -117,4 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActualDuration" xml:space="preserve">
+    <value>Actual duration</value>
+  </data>
+  <data name="AllTasks" xml:space="preserve">
+    <value>All tasks</value>
+  </data>
+  <data name="CompletionDate" xml:space="preserve">
+    <value>Completion date</value>
+  </data>
+  <data name="CreateTask_Index" xml:space="preserve">
+    <value>Create task</value>
+  </data>
+  <data name="CultureUrlParam" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="Days_Subtasks" xml:space="preserve">
+    <value>days (subtasks)</value>
+  </data>
+  <data name="DeleteTask_Index" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="EditTask_Index" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ExecutiveList" xml:space="preserve">
+    <value>Executive list</value>
+  </data>
+  <data name="Header_Index" xml:space="preserve">
+    <value>Task hierarchy</value>
+  </data>
+  <data name="NoSubtasks_Index" xml:space="preserve">
+    <value>No subtasks</value>
+  </data>
+  <data name="PlannedCompletionDate" xml:space="preserve">
+    <value>Planned completion date</value>
+  </data>
+  <data name="PlannedDuration" xml:space="preserve">
+    <value>Planned duration</value>
+  </data>
+  <data name="RegistrationDate" xml:space="preserve">
+    <value>Registration date</value>
+  </data>
+  <data name="SubmitTaskCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="SubmitTaskEdit" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="SubtaskName" xml:space="preserve">
+    <value>Subtask name</value>
+  </data>
+  <data name="Subtasks_Index" xml:space="preserve">
+    <value>List of tasks/subtasks</value>
+  </data>
+  <data name="TaskDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="TaskName" xml:space="preserve">
+    <value>Task name</value>
+  </data>
+  <data name="TaskStatus" xml:space="preserve">
+    <value>Task status</value>
+  </data>
+  <data name="Title_Create" xml:space="preserve">
+    <value>Add task</value>
+  </data>
+  <data name="Title_Edit" xml:space="preserve">
+    <value>Modify task</value>
+  </data>
+  <data name="Title_Index" xml:space="preserve">
+    <value>Task Manager for DMD</value>
+  </data>
 </root>
