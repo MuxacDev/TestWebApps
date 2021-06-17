@@ -452,7 +452,7 @@ namespace TaskManagerDMD.Controllers
         {
             try
             {
-                if (task.RegistrationDate < m_taskToEdit.PlannedCompletionDate)
+                if (task.RegistrationDate < m_taskToEdit.PlannedCompletionDate&& task.RegistrationDate!= new DateTime(0001, 01, 01, 0, 0, 0))
                 {
                     m_taskToEdit.RegistrationDate = task.RegistrationDate;
                 }              
