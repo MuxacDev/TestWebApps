@@ -150,6 +150,9 @@
   <data name="Header_Index" xml:space="preserve">
     <value>Task hierarchy</value>
   </data>
+  <data name="HierarchyNote_Index" xml:space="preserve">
+    <value>*For subtask creation select father node in hierarchy</value>
+  </data>
   <data name="NoSubtasks_Index" xml:space="preserve">
     <value>No subtasks</value>
   </data>

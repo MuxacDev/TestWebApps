@@ -608,6 +608,7 @@ namespace TaskManagerDMD.Controllers
         {
             ViewData["Title"] = _localizer["Title_Create"];            
             ViewData["TaskName"] = _localizer["TaskName"];
+            ViewData["SubtaskName"] = _localizer["SubtaskName"];
             ViewData["TaskDescription"] = _localizer["TaskDescription"];
             ViewData["ExecutiveList"] = _localizer["ExecutiveList"];
             ViewData["PlannedCompletionDate"] = _localizer["PlannedCompletionDate"];
@@ -654,7 +655,8 @@ namespace TaskManagerDMD.Controllers
             ViewData["Days"] = _localizer["Days"];
             ViewData["Days_Subtasks"] = _localizer["Days_Subtasks"];
             ViewData["AllTasks"] = _localizer["AllTasks"];            
-            ViewData["NoSubtasks_Index"] = _localizer["NoSubtasks_Index"];            
+            ViewData["NoSubtasks_Index"] = _localizer["NoSubtasks_Index"];
+            ViewData["HierarchyNote_Index"] = _localizer["HierarchyNote_Index"];
         }
     }
 }

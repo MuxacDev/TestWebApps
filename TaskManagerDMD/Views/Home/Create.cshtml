@@ -7,8 +7,7 @@
         if (ViewBag.SelectedId == item.Id)
         {
         <label asp-for="ParentId" class="control-label">
-            @ViewData["TaskName"]
-                    : @item.TaskName
+            @ViewData["TaskName"]: @item.TaskName
                 </label>
             break;
         }
