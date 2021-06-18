@@ -635,6 +635,7 @@ namespace TaskManagerDMD.Controllers
 
         private void SetViewDataForIndex()
         {
+            ViewData["CultureUrlParam"] = _localizer["CultureUrlParam"];
             ViewData["Header_Index"] = _localizer["Header_Index"];
             ViewData["CreateTask_Index"] = _localizer["CreateTask_Index"];
             ViewData["EditTask_Index"] = _localizer["EditTask_Index"];
@@ -652,8 +653,7 @@ namespace TaskManagerDMD.Controllers
             ViewData["ActualDuration"] = _localizer["ActualDuration"];
             ViewData["Days"] = _localizer["Days"];
             ViewData["Days_Subtasks"] = _localizer["Days_Subtasks"];
-            ViewData["AllTasks"] = _localizer["AllTasks"];
-            ViewData["CultureUrlParam"] = _localizer["CultureUrlParam"];
+            ViewData["AllTasks"] = _localizer["AllTasks"];            
             ViewData["NoSubtasks_Index"] = _localizer["NoSubtasks_Index"];            
         }
     }
