@@ -3,10 +3,10 @@
 {
     <h2>@ViewData["TaskName"]: @Model.TaskName</h2>
     <h3>
-        @Html.ActionLink(ViewData["EditTask_Index"].ToString(), "Edit", new { selectedId = Model.Id }, null)
+        @Html.ActionLink(ViewData["EditTask_Index"].ToString(), "Edit", new { id = Model.Id, culture = ViewBag.Culture }, null)
         @if (!ViewBag.Children)
         {
-            @Html.ActionLink(" | "+ViewData["DeleteTask_Index"].ToString(), "Delete", new { selectedId = Model.Id }, null)
+            @Html.ActionLink(" | "+ViewData["DeleteTask_Index"].ToString(), "Delete", new { id = Model.Id }, null)
         }        
     </h3>
     <ul class="list-group">

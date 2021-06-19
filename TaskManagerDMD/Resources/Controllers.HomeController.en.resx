@@ -129,9 +129,6 @@
   <data name="CreateTask_Index" xml:space="preserve">
     <value>Create task</value>
   </data>
-  <data name="CultureUrlParam" xml:space="preserve">
-    <value>en</value>
-  </data>
   <data name="Days" xml:space="preserve">
     <value>days</value>
   </data>
@@ -151,7 +148,7 @@
     <value>Task hierarchy</value>
   </data>
   <data name="HierarchyNote_Index" xml:space="preserve">
-    <value>*For subtask creation select father node in hierarchy</value>
+    <value>* for subtask creation select father node in hierarchy</value>
   </data>
   <data name="NoSubtasks_Index" xml:space="preserve">
     <value>No subtasks</value>

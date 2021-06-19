@@ -11,7 +11,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div>
-                <h5 class="navbar-brand">Язык интерфейса: <a href=@Url.Action("Index", "Home",new {culture="ru" },null)>Русский</a> | <a href=@Url.Action("Index", "Home",new {culture="en" },null)>English</a></h5>
+                <h5 class="navbar-brand">Язык интерфейса: <a href=@Url.Action("SetCulture", "Home",new {cult="ru" },null)>Русский</a> | <a href=@Url.Action("SetCulture", "Home",new {cult="en" },null)>English</a></h5>
                 <!--<ul class="nav navbar-nav">
         <li><h5><a href="~/Home/Index" class="navbar-brand">Главная</a></h5></li>
         <li></li>
@@ -24,7 +24,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>© @DateTime.Now.Year - @ViewData["Title"]</p>
+            <p>© @DateTime.Now.Year - @ViewData["App"]</p>
         </footer>
     </div>
 </body>

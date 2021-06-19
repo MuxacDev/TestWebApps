@@ -129,9 +129,6 @@
   <data name="CreateTask_Index" xml:space="preserve">
     <value>Создать задачу</value>
   </data>
-  <data name="CultureUrlParam" xml:space="preserve">
-    <value>ru</value>
-  </data>
   <data name="Days" xml:space="preserve">
     <value>дней</value>
   </data>
@@ -151,7 +148,7 @@
     <value>Иерархия задач</value>
   </data>
   <data name="HierarchyNote_Index" xml:space="preserve">
-    <value>*для создания подзадачи выделить родительский узел в иерархии</value>
+    <value>* для создания подзадачи выделить родительский узел в иерархии</value>
   </data>
   <data name="NoSubtasks_Index" xml:space="preserve">
     <value>Нет подзадач</value>

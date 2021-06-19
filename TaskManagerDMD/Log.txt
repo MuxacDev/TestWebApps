@@ -31,3 +31,11 @@ dxfgsdfghs
 Время ошибки: 6/17/2021 11:32:47 PM
 dxfgsdfghs
    at TaskManagerDMD.Controllers.HomeController.Index() in E:\source\repos\TestWebApps\TaskManagerDMD\Controllers\HomeController.cs:line 192
+Время ошибки: 19.06.2021 19:22:13
+The property 'Id' on entity type 'TmTask' has a temporary value while attempting to change the entity's state to 'Deleted'. Either set a permanent value explicitly or ensure that the database is configured to generate values for this property.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at Microsoft.EntityFrameworkCore.DbContext.Remove[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at TaskManagerDMD.Controllers.HomeController.Delete(Int32 selectedId) in E:\source\repos\TestWebApps\TaskManagerDMD\Controllers\HomeController.cs:line 581

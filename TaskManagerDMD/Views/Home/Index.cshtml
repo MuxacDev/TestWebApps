@@ -4,7 +4,7 @@
 <script type="text/javascript">
     function showSubtasks(selectedId) {
         $.ajax({
-            url: '@Url.Action("GetSubtasks", "Home",new {culture=ViewData["CultureUrlParam"].ToString() },null)',//controller name and action
+            url: '@Url.Action("GetSubtasks", "Home",new {culture=ViewBag.Culture.ToString() },null)',//controller name and action
             type: 'POST',
             data: { id: selectedId } //id
             })
@@ -15,7 +15,7 @@
     }
     function showTaskDetails(selectedId) {
         $.ajax({
-            url: '@Url.Action("GetTaskDetails", "Home", new { culture = ViewData["CultureUrlParam"].ToString() }, null)',//controller name and action
+            url: '@Url.Action("GetTaskDetails", "Home", new { culture = ViewBag.Culture.ToString() }, null)',//controller name and action
             type: 'POST',
             data: { id: selectedId } //id
             })
@@ -26,7 +26,7 @@
     }
     function showTaskCreationLink(selectedId) {
         $.ajax({
-            url: '@Url.Action("GetTaskCreationLink", "Home", new { culture = ViewData["CultureUrlParam"].ToString() }, null)',//controller name and action
+            url: '@Url.Action("GetTaskCreationLink", "Home", new { culture = ViewBag.Culture.ToString() }, null)',//controller name and action
             type: 'POST',
             data: { id: selectedId } //id
             })

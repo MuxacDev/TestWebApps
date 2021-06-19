@@ -18,7 +18,7 @@ namespace TaskManagerDMD.Controllers
         {
             _localizer = localizer;
         }*/
-
+        static string m_culture="ru";
         static int m_selectedId; //статическое поле для хранения Id выбранного нода         
         static TmTask m_taskToEdit; //статическое поле для хранения объекта редактируемой задачи
 
@@ -339,19 +339,19 @@ namespace TaskManagerDMD.Controllers
         /// <summary>
         /// Вызов формы ввода полей создаваемой подзадачи
         /// </summary>
-        /// <param name="selectedId">Id выбранного узла, передаваемый создаваемой подзадаче как свойство ParentId</param>
+        /// <param name="id">Id выбранного узла, передаваемый создаваемой подзадаче как свойство ParentId</param>
         /// <returns></returns>
-        public IActionResult Create(int selectedId)
+        public IActionResult Create(int id)
         {
             try
             {
                 //активация локализации
                 SetViewDataForCreate();
 
-                m_selectedId = selectedId;//переменная со значением ParentId для создаваемой подзадачи
+                m_selectedId = id;//переменная со значением ParentId для создаваемой подзадачи
 
                 ViewBag.Tasks = db.Tasks;//переменная со списком задач для формы создания подзадачи
-                ViewBag.SelectedId = selectedId;//передается в форму создания подзадачи
+                ViewBag.SelectedId = id;//передается в форму создания подзадачи
 
                 return View();
             }
@@ -408,9 +408,9 @@ namespace TaskManagerDMD.Controllers
         /// <summary>
         /// Метод сохранения изменяемого задания редактирования
         /// </summary>
-        /// <param name="selectedId">Id выбранного узла</param>
+        /// <param name="id">Id выбранного узла</param>
         /// <returns></returns>
-        public IActionResult Edit(int selectedId)
+        public IActionResult Edit(int id)
         {
             try
             {
@@ -419,7 +419,7 @@ namespace TaskManagerDMD.Controllers
 
                 foreach (TmTask task in db.Tasks)
                 {
-                    if (selectedId == task.Id)
+                    if (id == task.Id)
                     {
                         ViewBag.TaskToEdit = task;
                         m_taskToEdit = task;
@@ -462,10 +462,9 @@ namespace TaskManagerDMD.Controllers
                 {
                     m_taskToEdit.PlannedCompletionDate = task.PlannedCompletionDate;
                 }
-                else
-                {
-                    m_taskToEdit.PlannedCompletionDate = DateTime.Now.AddDays(7);
-                }
+
+                
+
                 m_taskToEdit.TaskName = task.TaskName;
                 m_taskToEdit.TaskDescription = task.TaskDescription;
                 db.Tasks.Update(m_taskToEdit);
@@ -547,10 +546,10 @@ namespace TaskManagerDMD.Controllers
         /// <summary>
         /// Метод удаления нода
         /// </summary>
-        /// <param name="selectedId">Id выбранного узла</param>
+        /// <param name="id">Id выбранного узла</param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Delete(int selectedId)
+        public IActionResult Delete(int id)
         {
             try
             {
@@ -558,12 +557,12 @@ namespace TaskManagerDMD.Controllers
                 TmTask taskToDelete = new TmTask();
                 foreach (TmTask task in db.Tasks)
                 {
-                    if (selectedId == task.Id)
+                    if (id == task.Id)
                     {
 
                         foreach (TmTask item in db.Tasks)
                         {
-                            if (selectedId == item.ParentId)
+                            if (id == item.ParentId)
                             {
                                 //db.Tasks.Remove(item);
                                 delete = false;
@@ -606,6 +605,7 @@ namespace TaskManagerDMD.Controllers
 
         private void SetViewDataForCreate()
         {
+            ViewBag.Culture = m_culture;
             ViewData["Title"] = _localizer["Title_Create"];            
             ViewData["TaskName"] = _localizer["TaskName"];
             ViewData["SubtaskName"] = _localizer["SubtaskName"];
@@ -617,10 +617,12 @@ namespace TaskManagerDMD.Controllers
             ViewData["Submit"] = _localizer["SubmitTaskCreate"];
             ViewData["Days"] = _localizer["Days"];
             ViewData["Days_Subtasks"] = _localizer["Days_Subtasks"];
+            ViewData["App"] = _localizer["Title_Index"];
         }
 
         private void SetViewDataForEdit()
         {
+            ViewBag.Culture = m_culture;
             ViewData["Title"] = _localizer["Title_Edit"];            
             ViewData["TaskName"] = _localizer["TaskName"];
             ViewData["TaskDescription"] = _localizer["TaskDescription"];
@@ -632,11 +634,13 @@ namespace TaskManagerDMD.Controllers
             ViewData["Submit"] = _localizer["SubmitTaskEdit"];
             ViewData["Days"] = _localizer["Days"];
             ViewData["Days_Subtasks"] = _localizer["Days_Subtasks"];
+            ViewData["App"] = _localizer["Title_Index"];
         }
 
         private void SetViewDataForIndex()
         {
-            ViewData["CultureUrlParam"] = _localizer["CultureUrlParam"];
+            ViewBag.Culture = m_culture;
+            
             ViewData["Header_Index"] = _localizer["Header_Index"];
             ViewData["CreateTask_Index"] = _localizer["CreateTask_Index"];
             ViewData["EditTask_Index"] = _localizer["EditTask_Index"];
@@ -657,6 +661,14 @@ namespace TaskManagerDMD.Controllers
             ViewData["AllTasks"] = _localizer["AllTasks"];            
             ViewData["NoSubtasks_Index"] = _localizer["NoSubtasks_Index"];
             ViewData["HierarchyNote_Index"] = _localizer["HierarchyNote_Index"];
+            ViewData["App"] = _localizer["Title_Index"];
+        }
+
+        public IActionResult SetCulture(string cult)
+        {
+            m_culture = cult;
+            ViewBag.Culture = cult;
+            return RedirectToAction("Index", new { culture = cult});
         }
     }
 }
