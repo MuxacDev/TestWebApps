@@ -618,6 +618,10 @@ namespace TaskManagerDMD.Controllers
             ViewData["Days"] = _localizer["Days"];
             ViewData["Days_Subtasks"] = _localizer["Days_Subtasks"];
             ViewData["App"] = _localizer["Title_Index"];
+            ViewData["TaskStarted"] = _localizer["TaskStarted"];
+            ViewData["TaskInProgress"] = _localizer["TaskInProgress"];
+            ViewData["TaskPaused"] = _localizer["TaskPaused"];
+            ViewData["TaskDone"] = _localizer["TaskDone"];
         }
 
         private void SetViewDataForEdit()
@@ -635,6 +639,10 @@ namespace TaskManagerDMD.Controllers
             ViewData["Days"] = _localizer["Days"];
             ViewData["Days_Subtasks"] = _localizer["Days_Subtasks"];
             ViewData["App"] = _localizer["Title_Index"];
+            ViewData["TaskStarted"] = _localizer["TaskStarted"];
+            ViewData["TaskInProgress"] = _localizer["TaskInProgress"];
+            ViewData["TaskPaused"] = _localizer["TaskPaused"];
+            ViewData["TaskDone"] = _localizer["TaskDone"];
         }
 
         private void SetViewDataForIndex()

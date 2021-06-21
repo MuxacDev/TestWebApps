@@ -177,8 +177,20 @@
   <data name="TaskDescription" xml:space="preserve">
     <value>Описание</value>
   </data>
+  <data name="TaskDone" xml:space="preserve">
+    <value>Завершена</value>
+  </data>
+  <data name="TaskInProgress" xml:space="preserve">
+    <value>Выполняется</value>
+  </data>
   <data name="TaskName" xml:space="preserve">
     <value>Имя задачи</value>
+  </data>
+  <data name="TaskPaused" xml:space="preserve">
+    <value>Приостановлена</value>
+  </data>
+  <data name="TaskStarted" xml:space="preserve">
+    <value>Назначена</value>
   </data>
   <data name="TaskStatus" xml:space="preserve">
     <value>Статус задания</value>

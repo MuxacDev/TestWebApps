@@ -177,8 +177,20 @@
   <data name="TaskDescription" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="TaskDone" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="TaskInProgress" xml:space="preserve">
+    <value>In progress</value>
+  </data>
   <data name="TaskName" xml:space="preserve">
     <value>Task name</value>
+  </data>
+  <data name="TaskPaused" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="TaskStarted" xml:space="preserve">
+    <value>Started</value>
   </data>
   <data name="TaskStatus" xml:space="preserve">
     <value>Task status</value>

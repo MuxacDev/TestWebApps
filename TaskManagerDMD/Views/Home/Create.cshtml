@@ -36,10 +36,10 @@
             @ViewData["TaskStatus"]
             </label>
         <select asp-for="TaskStatus" class="form-control">
-            <option value="Назначена">Назначена</option>
-            <option value="Выполняется">Выполняется</option>
-            <option disabled value="Приостановлена">Приостановлена</option>
-            <option disabled value="Завершена">Завершена</option>
+            <option value="Назначена">@ViewData["TaskStarted"]</option>
+            <option value="Выполняется">@ViewData["TaskInProgress"]</option>
+            <option disabled value="Приостановлена">@ViewData["TaskPaused"]</option>
+            <option disabled value="Завершена">@ViewData["TaskDone"]</option>
         </select>
     </div>
     <div class="form-group">
