@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.Localization;
 using System.IO;
 using System.Diagnostics;
+using System.Data;
 
 
 namespace TaskManagerDMD.Controllers
@@ -313,14 +314,14 @@ namespace TaskManagerDMD.Controllers
         /// <param name="id">Id задачи, передаваемый частичному представлению "Создание подзадачи"</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult GetTaskCreationLink(int id)
+        public ActionResult GetTaskCreationLink(string id)
         {
             try
             {
                 //активация локализации
                 SetViewDataForIndex();
 
-                return PartialView("TaskCreationLinkPartialView", id);
+                return PartialView("TaskCreationLinkPartialView", int.Parse(id));
             }
             catch (Exception ex)
             {
@@ -339,19 +340,19 @@ namespace TaskManagerDMD.Controllers
         /// <summary>
         /// Вызов формы ввода полей создаваемой подзадачи
         /// </summary>
-        /// <param name="id">Id выбранного узла, передаваемый создаваемой подзадаче как свойство ParentId</param>
+        /// <param name="parentId">Id выбранного узла, передаваемый создаваемой подзадаче как свойство ParentId</param>
         /// <returns></returns>
-        public IActionResult Create(int id)
+        public IActionResult Create(int parentId)
         {
             try
             {
                 //активация локализации
                 SetViewDataForCreate();
 
-                m_selectedId = id;//переменная со значением ParentId для создаваемой подзадачи
+                m_selectedId = parentId;//переменная со значением ParentId для создаваемой подзадачи
 
                 ViewBag.Tasks = db.Tasks;//переменная со списком задач для формы создания подзадачи
-                ViewBag.SelectedId = id;//передается в форму создания подзадачи
+                ViewBag.SelectedId = parentId;//передается в форму создания подзадачи
 
                 return View();
             }
@@ -387,7 +388,8 @@ namespace TaskManagerDMD.Controllers
                 {
                     task.PlannedCompletionDate = DateTime.Now.AddDays(7);
                 }
-                db.Tasks.Add(task);
+
+                db.Tasks.Add(task);                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -399,6 +401,7 @@ namespace TaskManagerDMD.Controllers
                 Trace.WriteLine("Время ошибки: " + DateTime.Now.ToLocalTime().ToString());
                 Trace.WriteLine(ex.Message);
                 Trace.WriteLine(ex.StackTrace);
+                Trace.WriteLine(ex.InnerException);
                 Trace.Flush();
                 f.Close();
                 return RedirectToAction("Error");

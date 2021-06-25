@@ -6,35 +6,25 @@
     {
         if (ViewBag.SelectedId == item.Id)
         {
-        <label asp-for="ParentId" class="control-label">
-            @ViewData["TaskName"]: @item.TaskName
-                </label>
+            <label asp-for="ParentId" class="control-label">@ViewData["TaskName"]: @item.TaskName</label>
             break;
         }
     }        
     </div>
     <div class="form-group">
-        <label asp-for="TaskName" class="control-label">
-            @ViewData["SubtaskName"]
-            </label>
+        <label asp-for="TaskName" class="control-label">@ViewData["SubtaskName"]</label>
         <input required type="text" asp-for="TaskName" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="TaskDescription" class="control-label">
-            @ViewData["TaskDescription"]
-            </label>
+        <label asp-for="TaskDescription" class="control-label">@ViewData["TaskDescription"]</label>
         <input type="text" asp-for="TaskDescription" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="ExecutiveList" class="control-label">
-            @ViewData["ExecutiveList"]
-            </label>
+        <label asp-for="ExecutiveList" class="control-label">@ViewData["ExecutiveList"]</label>
         <input type="text" asp-for="ExecutiveList" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="TaskStatus" class="control-label">
-            @ViewData["TaskStatus"]
-            </label>
+        <label asp-for="TaskStatus" class="control-label">@ViewData["TaskStatus"]</label>
         <select asp-for="TaskStatus" class="form-control">
             <option value="Назначена">@ViewData["TaskStarted"]</option>
             <option value="Выполняется">@ViewData["TaskInProgress"]</option>
@@ -43,9 +33,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label asp-for="PlannedCompletionDate" class="control-label">
-            @ViewData["PlannedCompletionDate"]
-            </label>
+        <label asp-for="PlannedCompletionDate" class="control-label">@ViewData["PlannedCompletionDate"]</label>
         <input type="datetime-local" asp-for="PlannedCompletionDate" class="form-control" />
     </div>
     <div class="form-group">
